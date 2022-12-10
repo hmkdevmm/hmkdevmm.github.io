@@ -686,7 +686,7 @@ input[type='checkbox'] {
 	margin-top: 0;
 	border: none;
 	border-radius: 0.25rem;
-	background-color: #4633af;
+	background-color: #4c4c4c;
 }
 
 .navbar-custom .dropdown-item {
@@ -695,7 +695,7 @@ input[type='checkbox'] {
 }
 
 .navbar-custom .dropdown-item:hover {
-	background-color: #4633af;
+	background-color: #4c4c4c;
 }
 
 .navbar-custom .dropdown-item .item-text {
