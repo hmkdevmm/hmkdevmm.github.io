@@ -3,9 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="HMK DEV MM — Simple, smart, and useful apps designed to make your daily life easier and more productive.">
+<meta name="description" content="HMK DEV MM — Simple, smart, and useful Android apps designed to make your daily life easier and more productive.">
 <title>HMK DEV MM — Portfolio</title>
-<link rel="icon" href="images/favicon.png">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="images/logo.svg">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon.png">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HMK DEV MM">
+<meta property="og:title" content="HMK DEV MM — Simple, smart Android apps">
+<meta property="og:description" content="Lightweight, practical Android apps — photo editors, calculators, dictionary, and more.">
+<meta property="og:image" content="https://hmkdevmm.github.io/images/og-image.png">
+<meta property="og:url" content="https://hmkdevmm.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HMK DEV MM — Simple, smart Android apps">
+<meta name="twitter:description" content="Lightweight, practical Android apps — photo editors, calculators, dictionary, and more.">
+<meta name="twitter:image" content="https://hmkdevmm.github.io/images/og-image.png">
+
 <style>
   :root{
     --bg:#0a0a0c; --bg2:#111114; --fg:#f4f4f5; --muted:#9a9aa2; --accent:#7c5cff; --accent2:#4d3bd6;
@@ -19,13 +36,43 @@
   a{color:inherit; text-decoration:none;}
   .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
 
-  nav{position:sticky; top:0; z-index:10; backdrop-filter:blur(12px); background:rgba(10,10,12,.7); border-bottom:1px solid #1e1e22;}
+  nav{position:sticky; top:0; z-index:20; backdrop-filter:blur(12px); background:rgba(10,10,12,.7); border-bottom:1px solid #1e1e22;}
   nav .wrap{display:flex; justify-content:space-between; align-items:center; height:72px;}
-  .logo{font-weight:700; letter-spacing:.5px; font-size:18px;}
+  .logo{font-weight:700; letter-spacing:.5px; font-size:18px; display:flex; align-items:center; gap:10px;}
+  .logo img{width:28px; height:28px; display:block;}
   .logo span{color:var(--accent);}
   nav ul{display:flex; gap:32px; list-style:none; font-size:14px; color:var(--muted);}
   nav ul a{transition:color .2s;}
   nav ul a:hover{color:var(--fg);}
+
+  /* Mobile hamburger */
+  .nav-toggle{
+    display:none; width:40px; height:40px; border-radius:10px; border:1px solid #2a2a30;
+    background:transparent; cursor:pointer; position:relative; z-index:21;
+  }
+  .nav-toggle span{
+    position:absolute; left:10px; right:10px; height:2px; background:var(--fg);
+    transition:transform .3s, opacity .3s;
+  }
+  .nav-toggle span:nth-child(1){top:14px;}
+  .nav-toggle span:nth-child(2){top:19px;}
+  .nav-toggle span:nth-child(3){top:24px;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(5px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-5px) rotate(-45deg);}
+
+  @media (max-width:640px){
+    .nav-toggle{display:block;}
+    nav ul{
+      position:fixed; top:72px; left:0; right:0; z-index:19;
+      flex-direction:column; gap:0; background:rgba(10,10,12,.98); border-bottom:1px solid #1e1e22;
+      max-height:0; overflow:hidden; opacity:0;
+      transition:max-height .35s ease, opacity .35s ease;
+    }
+    nav ul.open{max-height:240px; opacity:1;}
+    nav ul li{width:100%;}
+    nav ul a{display:block; padding:18px 24px; border-top:1px solid #1e1e22; font-size:15px;}
+  }
 
   header{padding:140px 0 100px; position:relative; overflow:hidden;}
   header::before{content:"";position:absolute; top:-200px; right:-200px; width:500px; height:500px; background:radial-gradient(circle,rgba(124,92,255,.25),transparent 70%); filter:blur(40px); animation:driftGlow 12s ease-in-out infinite;}
@@ -34,6 +81,23 @@
   h1{font-size:clamp(36px,6vw,64px); font-weight:800; letter-spacing:-1.5px; max-width:820px;}
   header p.lead{margin-top:24px; font-size:19px; color:var(--muted); max-width:560px;}
   .cta-row{margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;}
+
+  /* Hero entrance animation — staggered fade + rise */
+  @keyframes heroRise{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  header .eyebrow,
+  header h1,
+  header p.lead,
+  header .cta-row{
+    opacity:0;
+    animation:heroRise .8s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  header .eyebrow{animation-delay:.05s;}
+  header h1{animation-delay:.18s;}
+  header p.lead{animation-delay:.34s;}
+  header .cta-row{animation-delay:.5s;}
   .btn{padding:14px 28px; border-radius:10px; font-weight:600; font-size:14px; display:inline-flex; align-items:center; gap:8px; transition:transform .2s, box-shadow .2s;}
   .btn-primary{background:var(--accent); color:#fff;}
   .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(124,92,255,.6);}
@@ -95,6 +159,20 @@
   }
   .card:hover .icon-wrap{animation-play-state:paused;}
 
+  /* Screenshot preview — reveals on hover */
+  .shot-wrap{
+    max-height:0; opacity:0; overflow:hidden; border-radius:14px;
+    transition:max-height .45s cubic-bezier(.2,.8,.2,1), opacity .35s ease, margin .45s;
+    margin-top:0;
+  }
+  .card:hover .shot-wrap{max-height:160px; opacity:1; margin-top:18px; margin-bottom:6px;}
+  .shot-wrap img{
+    width:100%; display:block; border-radius:14px; border:1px solid #232328;
+    transform:translateY(6px) scale(1.02);
+    transition:transform .45s cubic-bezier(.2,.8,.2,1);
+  }
+  .card:hover .shot-wrap img{transform:translateY(0) scale(1);}
+
   .card h3{font-size:17px; font-weight:600; margin-bottom:8px;}
   .card p{font-size:14px; color:var(--muted); margin-bottom:16px;}
   .card .meta{display:flex; gap:14px; font-size:12px; color:var(--muted); margin-bottom:16px;}
@@ -115,8 +193,11 @@
 <body>
 <nav>
   <div class="wrap">
-    <div class="logo">HMK<span>DEV</span>MM</div>
-    <ul>
+    <div class="logo"><img src="images/logo.svg" alt="HMK DEV MM logo">HMK<span>DEV</span>MM</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="navMenu">
       <li><a href="#work">Apps</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -125,9 +206,9 @@
 
 <header id="header">
   <div class="wrap">
-    <div class="eyebrow">Mobile App Studio · Nagoya, Japan</div>
+    <div class="eyebrow">Mobile App Studio</div>
     <h1>Simple, smart apps built for everyday life.</h1>
-    <p class="lead">I design and build lightweight, practical Android apps — from photo editing to everyday calculators — used by people every day.</p>
+    <p class="lead">I design and build lightweight, practical Android apps.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://play.google.com/store/apps/dev?id=8186349732441325977">Get apps on Play Store</a>
       <a class="btn btn-ghost" href="#contact">Contact me</a>
@@ -149,6 +230,7 @@
         </div>
         <h3>MM Photo Editor Pro</h3>
         <p>All-in-one photo editor with filters, background remover, and 40+ Myanmar Unicode fonts.</p>
+        <div class="shot-wrap"><img loading="lazy" src="https://play-lh.googleusercontent.com/oqBaH-II6obWLRn6i4QOsL5kD4gp1yeZYAl25XaMek_QpIUqZKeuF8BUOWh4ZBoYj1MCht_-R11kyaofIqQR=w526-h296" alt="MM Photo Editor Pro screenshot"></div>
         <div class="meta"><span>⭐ <b>4.8</b></span><span>1K+ downloads</span></div>
         <a class="card-link" href="https://play.google.com/store/apps/details?id=com.hmk.newphotoeditor" target="_blank" rel="noopener">
           View on Play Store
@@ -162,6 +244,7 @@
         </div>
         <h3>Myanmar Photo Editor</h3>
         <p>Create stylish photos with fonts, stickers, and neon effects for social media.</p>
+        <div class="shot-wrap"><img loading="lazy" src="https://play-lh.googleusercontent.com/JvbolGuiUqPoU7SVuWhp60y67yydwhuD30vg_BBqqdmMYYUU8CpIBA6yWQY0FQM-O7b0Gkbr5BP3B5w3XnmMLg=w526-h296" alt="Myanmar Photo Editor screenshot"></div>
         <div class="meta"><span>⭐ <b>4.5</b></span><span>500K+ downloads</span></div>
         <a class="card-link" href="https://play.google.com/store/apps/details?id=com.myanmar.photoeditor" target="_blank" rel="noopener">
           View on Play Store
@@ -175,6 +258,7 @@
         </div>
         <h3>MM Multi Calculator</h3>
         <p>18-in-1 calculator and converter — scientific, currency, loan, health, and more.</p>
+        <div class="shot-wrap"><img loading="lazy" src="https://play-lh.googleusercontent.com/w5jmRXiuH6CJCObvdZjPpA8MjiUJbF_5fgPY5yPwRGgSkEeaivhtFbXyNVlaT-WkGrCltK_s_EFRSa-0IzYT=w526-h296" alt="MM Multi Calculator screenshot"></div>
         <div class="meta"><span>500+ downloads</span></div>
         <a class="card-link" href="https://play.google.com/store/apps/details?id=com.hmk.my.calulator" target="_blank" rel="noopener">
           View on Play Store
@@ -188,6 +272,7 @@
         </div>
         <h3>HMK Add Text On Photo</h3>
         <p>Layer-based text editor with 50+ Myanmar Unicode fonts, stroke, shadow, and stickers.</p>
+        <div class="shot-wrap"><img loading="lazy" src="https://play-lh.googleusercontent.com/FE8rftiy2eJQJXjfXko0yOqlEEIM6qYPdhaR9kUFmR0jYL_cMJi1vmWSJVcHzI-zm887cKOOtDptlHNEHx4QGw=w526-h296" alt="HMK Add Text On Photo screenshot"></div>
         <div class="meta"><span>⭐ <b>4.5</b></span><span>100K+ downloads</span></div>
         <a class="card-link" href="https://play.google.com/store/apps/details?id=com.myandevs.proeditor" target="_blank" rel="noopener">
           View on Play Store
@@ -201,6 +286,7 @@
         </div>
         <h3>HMK JP-MM Dictionary</h3>
         <p>Offline Japanese–Myanmar dictionary with favorites, history, and vocabulary quizzes.</p>
+        <div class="shot-wrap"><img loading="lazy" src="https://play-lh.googleusercontent.com/3Ze7LPjo4QA0MzfmEoH_1TkxVfD86IKMt5qjcrphCHWX7hu-Rezq_s3NgkC_cgPkd1QqoWpoeguKCvMelnezXZc=w526-h296" alt="HMK JP-MM Dictionary screenshot"></div>
         <div class="meta"><span>⭐ <b>4.3</b></span><span>10K+ downloads</span></div>
         <a class="card-link" href="https://play.google.com/store/apps/details?id=com.mhk.jpmmdictionary" target="_blank" rel="noopener">
           View on Play Store
@@ -214,11 +300,28 @@
 
 <footer id="contact">
   <div class="wrap">
-    <div class="logo">HMK<span>DEV</span>MM</div>
+    <div class="logo" style="justify-content:center;"><img src="images/logo.svg" alt="HMK DEV MM logo">HMK<span>DEV</span>MM</div>
     <div class="contact">
-      Nagoya, Japan &nbsp;·&nbsp; <a href="mailto:hmkdevjp@hotmail.com">hmkdevjp@hotmail.com</a> &nbsp;·&nbsp; <a href="tel:+819883028470">+81 988 302 8470</a> &nbsp;·&nbsp; <a href="Privacy-Policy-Web.html">Privacy Policy</a>
+      <a href="mailto:hmkdevjp@hotmail.com">hmkdevjp@hotmail.com</a> &nbsp;·&nbsp; <a href="tel:+819883028470">+81 988 302 8470</a> &nbsp;·&nbsp; <a href="Privacy-Policy-Web.html">Privacy Policy</a>
     </div>
   </div>
 </footer>
+
+<script>
+  var navToggle = document.getElementById('navToggle');
+  var navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', function(){
+    var isOpen = navToggle.classList.toggle('open');
+    navMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navMenu.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navToggle.classList.remove('open');
+      navMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 </body>
 </html>
