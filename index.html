@@ -1,147 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="HMK DEV MM">
-    <meta name="author" content="Inovatik">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="HMK DEV MM — Simple, smart, and useful apps designed to make your daily life easier and more productive.">
+<title>HMK DEV MM — Portfolio</title>
+<link rel="icon" href="images/favicon.png">
+<style>
+  :root{
+    --bg:#0a0a0c; --bg2:#111114; --fg:#f4f4f5; --muted:#9a9aa2; --accent:#7c5cff; --accent2:#4d3bd6;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--bg); color:var(--fg); line-height:1.6;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
 
-    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
-	<meta property="og:site_name" content="" /> <!-- website name -->
-	<meta property="og:site" content="" /> <!-- website link -->
-	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
-	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
-	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
-	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
-	<meta property="og:type" content="article" />
+  nav{position:sticky; top:0; z-index:10; backdrop-filter:blur(12px); background:rgba(10,10,12,.7); border-bottom:1px solid #1e1e22;}
+  nav .wrap{display:flex; justify-content:space-between; align-items:center; height:72px;}
+  .logo{font-weight:700; letter-spacing:.5px; font-size:18px;}
+  .logo span{color:var(--accent);}
+  nav ul{display:flex; gap:32px; list-style:none; font-size:14px; color:var(--muted);}
+  nav ul a{transition:color .2s;}
+  nav ul a:hover{color:var(--fg);}
 
-    <!-- Website Title -->
-    <title>HMK DEV MM</title>
-    
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/fontawesome-all.css" rel="stylesheet">
-    <link href="css/swiper.css" rel="stylesheet">
-	<link href="css/magnific-popup.css" rel="stylesheet">
-	<link href="css/styles.css" rel="stylesheet">
-	
-	<!-- Favicon  -->
-    <link rel="icon" href="images/favicon.png">
+  header{padding:140px 0 100px; position:relative; overflow:hidden;}
+  header::before{content:"";position:absolute; top:-200px; right:-200px; width:500px; height:500px; background:radial-gradient(circle,rgba(124,92,255,.25),transparent 70%); filter:blur(40px); animation:driftGlow 12s ease-in-out infinite;}
+  @keyframes driftGlow{0%,100%{transform:translate(0,0);} 50%{transform:translate(-30px,30px);}}
+  .eyebrow{color:var(--accent); font-size:13px; letter-spacing:2px; text-transform:uppercase; font-weight:600; margin-bottom:20px;}
+  h1{font-size:clamp(36px,6vw,64px); font-weight:800; letter-spacing:-1.5px; max-width:820px;}
+  header p.lead{margin-top:24px; font-size:19px; color:var(--muted); max-width:560px;}
+  .cta-row{margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{padding:14px 28px; border-radius:10px; font-weight:600; font-size:14px; display:inline-flex; align-items:center; gap:8px; transition:transform .2s, box-shadow .2s;}
+  .btn-primary{background:var(--accent); color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(124,92,255,.6);}
+  .btn-ghost{border:1px solid #2a2a30; color:var(--fg);}
+  .btn-ghost:hover{border-color:#444; transform:translateY(-2px);}
+
+  section{padding:80px 0;}
+  .section-head{margin-bottom:48px;}
+  .section-head .eyebrow{margin-bottom:12px;}
+  .section-head h2{font-size:32px; font-weight:700; letter-spacing:-.5px;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px;}
+
+  .card{
+    position:relative;
+    background:var(--bg2); border:1px solid #1e1e22; border-radius:20px; padding:30px;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, box-shadow .35s;
+  }
+  .card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(124,92,255,.45);
+    box-shadow:0 24px 48px -20px rgba(124,92,255,.35);
+  }
+
+  /* Icon: idle float + hover glow/tilt — modern squircle treatment */
+  .icon-wrap{
+    position:relative;
+    width:64px; height:64px; margin-bottom:22px;
+    animation:iconFloat 4.5s ease-in-out infinite;
+  }
+  .card:nth-child(2) .icon-wrap{animation-delay:.3s;}
+  .card:nth-child(3) .icon-wrap{animation-delay:.6s;}
+  .card:nth-child(4) .icon-wrap{animation-delay:.9s;}
+  .card:nth-child(5) .icon-wrap{animation-delay:1.2s;}
+  @keyframes iconFloat{
+    0%,100%{transform:translateY(0px);}
+    50%{transform:translateY(-6px);}
+  }
+  .icon-wrap::before{
+    content:"";
+    position:absolute; inset:-10px;
+    background:radial-gradient(circle,rgba(124,92,255,.55),transparent 70%);
+    border-radius:28px;
+    opacity:0; transform:scale(.7);
+    transition:opacity .4s, transform .4s;
+    z-index:0;
+  }
+  .card:hover .icon-wrap::before{opacity:1; transform:scale(1);}
+  .icon-wrap img{
+    position:relative; z-index:1;
+    width:64px; height:64px; border-radius:18px;
+    display:block;
+    box-shadow:0 8px 20px -6px rgba(0,0,0,.6);
+    transition:transform .45s cubic-bezier(.2,.8,.2,1), border-radius .45s;
+  }
+  .card:hover .icon-wrap img{
+    transform:scale(1.12) rotate(-4deg);
+    border-radius:22px;
+  }
+  .card:hover .icon-wrap{animation-play-state:paused;}
+
+  .card h3{font-size:17px; font-weight:600; margin-bottom:8px;}
+  .card p{font-size:14px; color:var(--muted); margin-bottom:16px;}
+  .card .meta{display:flex; gap:14px; font-size:12px; color:var(--muted); margin-bottom:16px;}
+  .card .meta b{color:var(--fg);}
+  .card .card-link{
+    font-size:13px; font-weight:600; color:var(--accent);
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .card .card-link svg{transition:transform .3s;}
+  .card:hover .card-link svg{transform:translate(3px,-3px);}
+
+  footer{border-top:1px solid #1e1e22; padding:56px 0; text-align:center;}
+  footer .contact{color:var(--muted); font-size:14px; margin-top:12px;}
+  footer .contact a{color:var(--fg);}
+  footer .contact a:hover{color:var(--accent);}
+</style>
 </head>
-<body data-spy="scroll" data-target=".fixed-top">
-    
-    <!-- Preloader -->
-	<div class="spinner-wrapper">
-        <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-        </div>
+<body>
+<nav>
+  <div class="wrap">
+    <div class="logo">HMK<span>DEV</span>MM</div>
+    <ul>
+      <li><a href="#work">Apps</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="header">
+  <div class="wrap">
+    <div class="eyebrow">Mobile App Studio · Nagoya, Japan</div>
+    <h1>Simple, smart apps built for everyday life.</h1>
+    <p class="lead">I design and build lightweight, practical Android apps — from photo editing to everyday calculators — used by people every day.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/dev?id=8186349732441325977">Get apps on Play Store</a>
+      <a class="btn btn-ghost" href="#contact">Contact me</a>
     </div>
-    <!-- end of preloader -->
-    
+  </div>
+</header>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
-        <!-- Text Logo - Use this if you don't have a graphic logo -->
-        <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Leno</a> -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Published apps</div>
+      <h2>What I've built</h2>
+    </div>
+    <div class="grid">
 
-        <!-- Image Logo -->
-       <!-- <a class="navbar-brand logo-image" href="index.html"><img src="images/logo.svg" alt="alternative"></a> -->
-        
-        <!-- Mobile Menu Toggle Button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-awesome fas fa-bars"></span>
-            <span class="navbar-toggler-awesome fas fa-times"></span>
-        </button>
-        <!-- end of mobile menu toggle button -->
-
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#contact">CONTACT</a>
-                </li>
-            </ul>
-           
-           
+      <div class="card">
+        <div class="icon-wrap">
+          <img src="https://play-lh.googleusercontent.com/2Mpiqt0wqWIfadcnKzh3rpNepSneo6Z64Z-PRDSX9CJXLOMOWWbi0zJEy6NDTuRwF3Og8unUpS3e9OlHTg0TXA=s128" alt="MM Photo Editor Pro icon">
         </div>
-    </nav> <!-- end of navbar -->
-    <!-- end of navbar -->
+        <h3>MM Photo Editor Pro</h3>
+        <p>All-in-one photo editor with filters, background remover, and 40+ Myanmar Unicode fonts.</p>
+        <div class="meta"><span>⭐ <b>4.8</b></span><span>1K+ downloads</span></div>
+        <a class="card-link" href="https://play.google.com/store/apps/details?id=com.hmk.newphotoeditor" target="_blank" rel="noopener">
+          View on Play Store
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
+      </div>
 
+      <div class="card">
+        <div class="icon-wrap">
+          <img src="https://play-lh.googleusercontent.com/3hupWovoam5pj0Zlu5r4Er_ijPa_JCp5yuV-ZZjEInKZiDwuikWnKMGVrZCGC7NIPMGBp771KQUjoKQKlTEOUw=s128" alt="Myanmar Photo Editor icon">
+        </div>
+        <h3>Myanmar Photo Editor</h3>
+        <p>Create stylish photos with fonts, stickers, and neon effects for social media.</p>
+        <div class="meta"><span>⭐ <b>4.5</b></span><span>500K+ downloads</span></div>
+        <a class="card-link" href="https://play.google.com/store/apps/details?id=com.myanmar.photoeditor" target="_blank" rel="noopener">
+          View on Play Store
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
+      </div>
 
-    <!-- Header -->
-    <header id="header" class="header">
-        <div class="header-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="text-container">
-                            <h1>HMK DEV MM<br></h1>
-                            <p class="p-large">Simple, smart, and useful apps designed to make your daily life easier and more productive.</p>
-                           <!-- <a class="btn-solid-lg page-scroll" href="https://hmkdevmm.github.io/"><i class="fab fa-chrome"></i>Website</a> -->
-                            <a class="btn-solid-lg page-scroll" href="https://play.google.com/store/apps/dev?id=8186349732441325977"><i class="fab fa-google-play"></i>Download Our App on Play Store</a>
-                        </div>
-                    </div> <!-- end of col -->
-                    <div class="col-lg-6">
-                        <div class="image-container">
-                            <img class="img-fluid" src="images/header-iphone.gif" alt="alternative">
-                        </div> <!-- end of image-container -->
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of header-content -->
-    </header> <!-- end of header -->
-    <!-- end of header -->
+      <div class="card">
+        <div class="icon-wrap">
+          <img src="https://play-lh.googleusercontent.com/BPbN2N1C-KCv9XqrAYyz-c-AjYOQldVOKMwcZALjYBMczCL9d3CDtX0p6eZv94lnxMSeMKVmnbrBRXm-YvnAXDU=s128" alt="MM Multi Calculator icon">
+        </div>
+        <h3>MM Multi Calculator</h3>
+        <p>18-in-1 calculator and converter — scientific, currency, loan, health, and more.</p>
+        <div class="meta"><span>500+ downloads</span></div>
+        <a class="card-link" href="https://play.google.com/store/apps/details?id=com.hmk.my.calulator" target="_blank" rel="noopener">
+          View on Play Store
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
+      </div>
 
- 
+      <div class="card">
+        <div class="icon-wrap">
+          <img src="https://play-lh.googleusercontent.com/4hk9yA_cZKEMUw23V3xR8pi2HZKQrlqIe-f49SAiO-0lvCTwVUpPnCu3VAGbpkz2bk52u-f-Uh1fPrSZJfjQ6w=s128" alt="HMK Add Text On Photo icon">
+        </div>
+        <h3>HMK Add Text On Photo</h3>
+        <p>Layer-based text editor with 50+ Myanmar Unicode fonts, stroke, shadow, and stickers.</p>
+        <div class="meta"><span>⭐ <b>4.5</b></span><span>100K+ downloads</span></div>
+        <a class="card-link" href="https://play.google.com/store/apps/details?id=com.myandevs.proeditor" target="_blank" rel="noopener">
+          View on Play Store
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
+      </div>
 
+      <div class="card">
+        <div class="icon-wrap">
+          <img src="https://play-lh.googleusercontent.com/xZRcfUqJSsHyoDI5oa7GeuuFe1jbij9rYtT9Rx7TsyARK2wtGdQ3cp024WqljSxry7l3jOwBeb6ZQ3gZ9KeXbA=s128" alt="HMK JP-MM Dictionary icon">
+        </div>
+        <h3>HMK JP-MM Dictionary</h3>
+        <p>Offline Japanese–Myanmar dictionary with favorites, history, and vocabulary quizzes.</p>
+        <div class="meta"><span>⭐ <b>4.3</b></span><span>10K+ downloads</span></div>
+        <a class="card-link" href="https://play.google.com/store/apps/details?id=com.mhk.jpmmdictionary" target="_blank" rel="noopener">
+          View on Play Store
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
+      </div>
 
-    <!-- Contact -->
-    <div id="contact" class="form">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>CONTACT</h2>
-                    <ul class="list-unstyled li-space-lg">
-                        <li class="address">Don't hesitate to give us a call or mail to us</li>
-                        <li><i class="fas fa-map-marker-alt"></i>Nagoya,Japan</li>
-                        <li><i class="fas fa-phone"></i><a class="blue" href="tel:+969883028470">+819883028470</a></li>
-                        <li><i class="fas fa-envelope"></i><a class="blue" href="mailto:hmkdevjp@hotmail.com">hmkdevjp@hotmail.com</a></li>
-			<li><i class=></i><a class="blue" href="https://hmkdevmm.github.io/Privacy-Policy-Web" target="_blank">Privacy Policy</a></li>
-                    </ul>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3">
-                    
-                   
+    </div>
+  </div>
+</section>
 
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of form -->
-    <!-- end of contact -->
-
-
-   
-    
-    	
-    <!-- Scripts -->
-    <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
-    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
-    <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
-    <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
-    <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
-    <script src="js/morphext.min.js"></script> <!-- Morphtext rotating text in the header -->
-    <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
-    <script src="js/scripts.js"></script> <!-- Custom scripts -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="logo">HMK<span>DEV</span>MM</div>
+    <div class="contact">
+      Nagoya, Japan &nbsp;·&nbsp; <a href="mailto:hmkdevjp@hotmail.com">hmkdevjp@hotmail.com</a> &nbsp;·&nbsp; <a href="tel:+819883028470">+81 988 302 8470</a> &nbsp;·&nbsp; <a href="Privacy-Policy-Web.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
