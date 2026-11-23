@@ -15,12 +15,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HMK DEV MM">
 <meta property="og:title" content="HMK DEV MM — Simple, smart Android apps">
-<meta property="og:description" content="Lightweight, practical Android apps — photo editors, calculators, dictionary, and more.">
+<meta property="og:description" content="Lightweight, practical Android apps — photo editors, calculators, and Japanese learning.">
 <meta property="og:image" content="https://hmkdevmm.github.io/images/og-image.png">
 <meta property="og:url" content="https://hmkdevmm.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="HMK DEV MM — Simple, smart Android apps">
-<meta name="twitter:description" content="Lightweight, practical Android apps — photo editors, calculators, dictionary, and more.">
+<meta name="twitter:description" content="Lightweight, practical Android apps — photo editors, calculators, and Japanese learning.">
 <meta name="twitter:image" content="https://hmkdevmm.github.io/images/og-image.png">
 
 <style>
@@ -257,6 +257,10 @@
   }
   .card:hover .shot-wrap img{transform:translateY(0) scale(1);}
 
+  .platforms{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;}
+  .pf{font-size:11px; font-weight:600; letter-spacing:.3px; padding:4px 10px; border-radius:999px; border:1px solid #2a2a30; color:var(--muted);}
+  .pf.soon{border-color:rgba(124,92,255,.45); background:rgba(124,92,255,.12); color:#c9bdff;}
+
   .card h3{font-size:17px; font-weight:600; margin-bottom:8px;}
   .card p{font-size:14px; color:var(--muted); margin-bottom:16px;}
   .card .meta{display:flex; gap:14px; font-size:12px; color:var(--muted); margin-bottom:16px;}
@@ -295,7 +299,7 @@
     <div class="hero-text">
       <div class="badge"><span class="dot"></span>Mobile App Studio</div>
       <h1>Simple, <span class="shine">smart</span> apps built for everyday life.</h1>
-      <p class="lead">I design and build lightweight, practical Android apps.</p>
+      <p class="lead">I design and build lightweight, practical Android &amp; iOS apps.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://play.google.com/store/apps/dev?id=8186349732441325977">Get apps on Play Store</a>
         <a class="btn btn-ghost" href="#contact">Contact me</a>
@@ -382,12 +386,15 @@
 
       <div class="card">
         <div class="icon-wrap">
-          <img src="https://play-lh.googleusercontent.com/xZRcfUqJSsHyoDI5oa7GeuuFe1jbij9rYtT9Rx7TsyARK2wtGdQ3cp024WqljSxry7l3jOwBeb6ZQ3gZ9KeXbA=s128" alt="HMK JP-MM Dictionary icon">
+          <img src="images/nichimm-icon.png" onerror="this.onerror=null;this.src='https://play-lh.googleusercontent.com/xZRcfUqJSsHyoDI5oa7GeuuFe1jbij9rYtT9Rx7TsyARK2wtGdQ3cp024WqljSxry7l3jOwBeb6ZQ3gZ9KeXbA=s128'" alt="NichiMM icon">
         </div>
-        <h3>HMK JP-MM Dictionary</h3>
-        <p>Offline Japanese–Myanmar dictionary with favorites, history, and vocabulary quizzes.</p>
-        <div class="shot-wrap"><img loading="lazy" src="https://play-lh.googleusercontent.com/3Ze7LPjo4QA0MzfmEoH_1TkxVfD86IKMt5qjcrphCHWX7hu-Rezq_s3NgkC_cgPkd1QqoWpoeguKCvMelnezXZc=w526-h296" alt="HMK JP-MM Dictionary screenshot"></div>
-        <div class="meta"><span>⭐ <b>4.3</b></span><span>10K+ downloads</span></div>
+        <h3>NichiMM – Learn Japanese &amp; JLPT</h3>
+        <p>Learn Japanese with an offline Japanese–Myanmar dictionary, favorites, and vocabulary quizzes — built for JLPT learners.</p>
+        <div class="platforms"><span class="pf">Android</span><span class="pf soon">iOS · Coming soon</span></div>
+        <!-- App Store approve ဖြစ်ပြီးရင် အပေါ်က "iOS · Coming soon" span ကို အောက်ပါအတိုင်း အစားထိုးပါ:
+             <a class="pf" href="https://apps.apple.com/app/id6838051274" target="_blank" rel="noopener">iOS · App Store</a> -->
+        <div class="shot-wrap"><img loading="lazy" src="https://play-lh.googleusercontent.com/3Ze7LPjo4QA0MzfmEoH_1TkxVfD86IKMt5qjcrphCHWX7hu-Rezq_s3NgkC_cgPkd1QqoWpoeguKCvMelnezXZc=w526-h296" alt="NichiMM screenshot"></div>
+        <div class="meta"><span>10K+ downloads</span></div>
         <a class="card-link" href="https://play.google.com/store/apps/details?id=com.mhk.jpmmdictionary" target="_blank" rel="noopener">
           View on Play Store
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
