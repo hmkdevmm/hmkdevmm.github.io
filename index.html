@@ -258,7 +258,9 @@
   .card:hover .shot-wrap img{transform:translateY(0) scale(1);}
 
   .platforms{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;}
-  .pf{font-size:11px; font-weight:600; letter-spacing:.3px; padding:4px 10px; border-radius:999px; border:1px solid #2a2a30; color:var(--muted);}
+  .pf{font-size:11px; transition:border-color .2s,color .2s; font-weight:600; letter-spacing:.3px; padding:4px 10px; border-radius:999px; border:1px solid #2a2a30; color:var(--muted);}
+  a.pf{border-color:rgba(124,92,255,.45); background:rgba(124,92,255,.12); color:#c9bdff;}
+  a.pf:hover{border-color:var(--accent); color:#fff;}
   .pf.soon{border-color:rgba(124,92,255,.45); background:rgba(124,92,255,.12); color:#c9bdff;}
 
   .card h3{font-size:17px; font-weight:600; margin-bottom:8px;}
@@ -390,9 +392,7 @@
         </div>
         <h3>NichiMM – Learn Japanese &amp; JLPT</h3>
         <p>Learn Japanese with an offline Japanese–Myanmar dictionary, favorites, and vocabulary quizzes — built for JLPT learners.</p>
-        <div class="platforms"><span class="pf">Android</span><span class="pf soon">iOS · Coming soon</span></div>
-        <!-- App Store approve ဖြစ်ပြီးရင် အပေါ်က "iOS · Coming soon" span ကို အောက်ပါအတိုင်း အစားထိုးပါ:
-             <a class="pf" href="https://apps.apple.com/app/id6838051274" target="_blank" rel="noopener">iOS · App Store</a> -->
+        <div class="platforms"><span class="pf">Android</span><a class="pf" href="https://apps.apple.com/app/id6838051274" target="_blank" rel="noopener">iOS · App Store</a></div>
         <div class="shot-wrap"><img loading="lazy" src="https://play-lh.googleusercontent.com/3Ze7LPjo4QA0MzfmEoH_1TkxVfD86IKMt5qjcrphCHWX7hu-Rezq_s3NgkC_cgPkd1QqoWpoeguKCvMelnezXZc=w526-h296" alt="NichiMM screenshot"></div>
         <div class="meta"><span>10K+ downloads</span></div>
         <a class="card-link" href="https://play.google.com/store/apps/details?id=com.mhk.jpmmdictionary" target="_blank" rel="noopener">
